@@ -14,61 +14,36 @@ repo 區分成兩類檔案：
 - 其餘 `tools/*.py`：保留原始檔案
 
 ### B. 為了 Colab / GitHub 重現而加的輔助檔案
-這些檔案是 **附加工具**，不會取代原始 starter code：
+這些檔案是附加工具，不會取代原始 starter code：
 
 - `plot_results.py`：畫出最終 MSE 曲線
 - `generate_channel_data.py`：重新生成 `channel_train.npy` / `channel_test.npy`
 
 ### C. 模擬結果檔案放置資料夾
-放置在results資料夾中的
+放置在results資料夾中：
 
 - `final_results_200epochs.csv`:數據表格
 - `figure_2_9_reproduced_200ep.png`:模擬結果圖檔
 
 ---
 
-## 2. 資料夾結構
 
-```text
-.
-├── README.md
-├── requirements.txt
-├── main.py
-├── run_experiments.py
-├── plot_results.py
-├── generate_channel_data.py
-├── results
-│   ├── final_results_200epochs.csv
-│   └── figure_2_9_reproduced_200ep.png
-└── tools
-    ├── __init__.py
-    ├── channel_train.npy
-    ├── channel_test.npy
-    ├── networks.py
-    ├── networks_runtime.py
-    ├── problems.py
-    ├── raputil.py
-    ├── shrinkage.py
-    ├── tfinterp.py
-    └── train.py
-```
+## 2. 環境設定
 
----
-
-## 3. 環境設定
-
-### 3.1 Colab 測試環境
-本專案已在 Colab 以 `tensorflow.compat.v1` 模式驗證可跑。
+### 2.1 Colab 測試環境
+已在 Colab 以 `tensorflow.compat.v1` 模式驗證可跑
 
 安裝：
-```bash
-pip install -r requirements.txt
-```
+tensorflow>=2.16
+numpy
+scipy
+matplotlib
+pandas
 
-如果你使用的是全新的 Colab runtime，通常直接安裝即可。  
-若遇到 TensorFlow / JAX 套件衝突，建議使用全新 runtime 重新安裝。
+使用的是全新的 Colab runtime，通常直接安裝即可
+若遇到 TensorFlow / JAX 套件衝突，建議使用全新 runtime 重新安裝
 
-### 3.2 本機建議環境
+### 2.2 建議環境
 - Python 3.10+
 - TensorFlow 2.x（使用 `tensorflow.compat.v1`）
 - NumPy
@@ -78,9 +53,9 @@ pip install -r requirements.txt
 
 ---
 
-## 4. 如何執行
+## 3. 如何執行
 
-## 4.1 嚴格依照 starter code 的方式（符合作業要求）
+## 依照 starter code 的方式
 題目原始流程是直接修改 `main.py` 內的三個參數：
 
 - `ce_type = 'dnn'` 或 `'mmse'`
@@ -119,68 +94,26 @@ CP_flag = True
 ### (4) 無 CP 情況（虛線）
 把 `CP_flag = False` 後重複 DNN / LMMSE 測試。
 
----
-
-## 4.2 建議的自動化方式（Colab / GitHub 重現）
-為了方便在 Colab 重現全部流程，我另外提供了 `run_experiments.py`。  
-這個 helper **不會取代作業本體**，只是讓重複實驗更容易。
-
-### 訓練 DNN（有 CP）
-```bash
-python run_experiments.py --ce_type dnn --test_ce false --cp_flag true --training_epochs 200
-```
-
-### 測試 DNN（有 CP）
-```bash
-python run_experiments.py --ce_type dnn --test_ce true --cp_flag true --training_epochs 200
-```
-
-### 測試 LMMSE（有 CP）
-```bash
-python run_experiments.py --ce_type mmse --test_ce true --cp_flag true
-```
-
-### 訓練 DNN（無 CP）
-```bash
-python run_experiments.py --ce_type dnn --test_ce false --cp_flag false --training_epochs 200
-```
-
-### 測試 DNN（無 CP）
-```bash
-python run_experiments.py --ce_type dnn --test_ce true --cp_flag false --training_epochs 200
-```
-
-### 測試 LMMSE（無 CP）
-```bash
-python run_experiments.py --ce_type mmse --test_ce true --cp_flag false
-```
 
 ---
 
-## 5. 通道資料說明
+## 4. 通道資料說明
 
 原公開 starter code 會讀取：
 
 - `tools/channel_train.npy`
 - `tools/channel_test.npy`
 
-由於公開版本通常不一定附上這兩個檔案，因此本 repo 提供兩種方式：
+由於公開版本通常不附上這兩個檔案，因此自行重新生成：
 
-### 方式 A：直接使用已附上的 `.npy`
-本 repo 已經包含：
-- `tools/channel_train.npy`
-- `tools/channel_test.npy`
-
-### 方式 B：自行重新生成
+### 自行重新生成
 ```bash
 python generate_channel_data.py
 ```
 
-> 注意：這兩個 `.npy` 是 **替代用的 Rayleigh multipath channel dataset**，目的是讓公開 starter code 可執行；它們不是原作者未公開的私有資料檔。
-
 ---
 
-## 6. 題目設定
+## 5. 題目設定
 
 - OFDM subcarriers: `K = 64`
 - Pilot symbol: 第 1 個 OFDM symbol，64 個 QPSK pilots
@@ -195,10 +128,10 @@ python generate_channel_data.py
 
 ---
 
-## 7. 我實際怎麼做的
+## 6. 實際做法
 
 ### Step 1
-保留原始 `main.py` 與 `tools` 架構不變，只補完：
+保留原始 `main.py` 與 `tools` 架構不變，只補：
 - `tools/networks.py`
 - `tools/raputil.py`
 
@@ -218,7 +151,7 @@ python generate_channel_data.py
 
 ---
 
-## 8. 模擬結果圖放置位置
+## 7. 模擬結果圖放置位置
 
 最終圖檔放在：
 
@@ -232,7 +165,7 @@ results/figure_2_9_reproduced_200ep.png
 
 ---
 
-## 9. 最終數據表格（200 epochs）
+## 8. 最終數據表格（200 epochs）
 
 | SNR (dB) | DNN, CP | LMMSE, CP | DNN, no CP | LMMSE, no CP |
 |---:|---:|---:|---:|---:|
@@ -252,20 +185,20 @@ results/final_results_200epochs.csv
 
 ---
 
-## 10. 結果分析
+## 9. 結果分析
 
-### 10.1 有 CP 的情況
+### 9.1 有 CP 的情況
 - DNN 與 LMMSE 都會隨 SNR 上升而改善。
 - LMMSE 在整個 SNR 範圍內仍略優於 DNN。
 - 不過 DNN 在訓練到 200 epochs 後，相比 50 epochs 已有明顯提升，尤其在高 SNR 區域改善很大。
 
-### 10.2 無 CP 的情況
+### 9.2 無 CP 的情況
 - 無 CP 時，兩種方法都比有 CP 差。
 - LMMSE 在無 CP 下的 MSE 不再隨 SNR 持續下降，顯示誤差已受 ISI / ICI 主導。
 - DNN 在無 CP 下仍比無 CP 的 LMMSE 好很多，代表資料驅動方法確實能學到部分干擾補償能力。
 
-### 10.3 與題目要求的對應
-本結果已經滿足 Exercise 2.7 的核心要求：
+### 9.3 與題目要求的對應
+結果已經滿足 Exercise 2.7 的核心要求：
 1. 實作 DNN-based 與 LMMSE channel estimator
 2. 比較有 CP 與無 CP 兩種情況
 3. 給出 MSE 對 SNR 的曲線
@@ -273,7 +206,7 @@ results/final_results_200epochs.csv
 
 ---
 
-## 11. 畫圖方式
+## 10. 畫圖方式
 
 如果要重新畫圖：
 
@@ -283,28 +216,8 @@ python plot_results.py
 
 ---
 
-## 12. 注意事項
+## 11. 注意事項
 
-1. `tools/networks.py` 與 `tools/raputil.py` 是本作業真正的**填空答案**。
-2. `run_experiments.py` 與 `tools/networks_runtime.py` 只是為了 Colab / GitHub 自動化重現而加的輔助工具。
-3. 如果只從「作業解答檔案」角度來看，應以：
-   - `main.py`
-   - `tools/networks.py`
-   - `tools/raputil.py`
-   為主。
-4. 若只想快速驗證流程，可先把 DNN 的 `training_epochs` 降低；若要更接近最終結果，建議使用 200 epochs 以上。
+若只想快速驗證流程，可先把 DNN 的 `training_epochs` 降低；若要更接近最終結果，可能要使用 200 epochs 以上。
 
 ---
-
-## 13. 可直接上 GitHub 的檔案
-
-這份 repo 已包含：
-- README
-- 完整 `tools/`
-- 可重現的通道資料
-- 畫圖腳本
-- 自動化執行腳本
-- 最終圖與數據表
-
-可直接整個上傳到 GitHub。
-# Exercise-2.7_data-driven-SISO-OFDM-channel-estimation
