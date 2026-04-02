@@ -196,7 +196,7 @@ results/final_results_200epochs.csv
 - DNN 在無 CP 下仍比無 CP 的 LMMSE 好很多，代表資料驅動方法確實能學到部分干擾補償能力。
 
 ### 9.3 與題目要求的對應
-結果已經滿足 Exercise 2.7 的核心要求：
+結果已經滿足：
 1. 實作 DNN-based 與 LMMSE channel estimator
 2. 比較有 CP 與無 CP 兩種情況
 3. 給出 MSE 對 SNR 的曲線
