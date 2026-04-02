@@ -147,6 +147,9 @@ def channel(signal,channelResponse,SNRdb):
     signal_power = np.mean(abs(convolved**2)) #功率为平方的均值
     sigma2 = signal_power * 10**(-SNRdb/10) #由信噪比和信号功率反推噪声功率
     noise = np.sqrt(sigma2/2) * (np.random.randn(*convolved.shape)+1j*np.random.randn(*convolved.shape)) #噪声幅度/均值+高斯随机变量？
+    # [答] 這裡產生的是零均值（mean = 0）的複數高斯雜訊 np.random.randn(...) 會先生成實部與虛部都服從 N(0,1) 的高斯隨機變數，
+    # 再乘上 np.sqrt(sigma2/2) 做縮放，讓實部與虛部各自的方差都變成 sigma2/2
+    # 因此最後複數雜訊的總平均功率 E[|n|^2] = sigma2，剛好對應前面依 SNR 反推出的噪聲功率
     return convolved + noise,sigma2
 
 def removeCP(signal, CP, K):
