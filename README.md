@@ -1,34 +1,21 @@
 # Exercise 2.7 — Data-Driven SISO-OFDM Channel Estimation
 
-本 repository 整理了 **WCML Book, Chapter 2, Exercise 2.7** 的一份可直接放上 GitHub 的版本，內容包含：
 
-- 題目原始資料夾結構
-- 原 starter code 中 **TODO 空缺的補完版本**
-- Colab / 本機可重現的執行方式
-- 結果數據表格與圖檔
-- 畫圖腳本與通道資料生成腳本
+## 1. 檔案分類
 
----
+repo 區分成兩類檔案：
 
-## 1. 專案原則
-
-這份 repo 刻意區分成兩類檔案：
-
-### A. 符合作業要求的核心檔案
-這些檔案保留原始檔名與結構，只做 **starter code 中空缺的填寫**：
+### A. 符合要求的核心檔案
+檔案保留原始檔名與結構，並填寫空缺程式與回答註解問題：
 
 - `main.py`：保留題目原始寫法
 - `tools/networks.py`：補完 `build_ce_dnn()` 中的 TODO
-- `tools/raputil.py`：補完 `MMSE_CE()` 中的 TODO
-- 其餘 `tools/*.py`：保留原始工具檔案
-
-> 也就是說，**作業本體是基於題目給的原始碼填空完成**，不是另外重寫一套新架構。
+- `tools/raputil.py`：補完 `MMSE_CE()` 中的 TODO、回答其中註解問題
+- 其餘 `tools/*.py`：保留原始檔案
 
 ### B. 為了 Colab / GitHub 重現而加的輔助檔案
 這些檔案是 **附加工具**，不會取代原始 starter code：
 
-- `run_experiments.py`：方便在 Colab / terminal 直接跑四組實驗
-- `tools/networks_runtime.py`：Colab 自動化用 DNN runner
 - `plot_results.py`：畫出最終 MSE 曲線
 - `generate_channel_data.py`：重新生成 `channel_train.npy` / `channel_test.npy`
 
