@@ -216,7 +216,7 @@ python plot_results.py
 
 ## 11. 注意事項
 
-- 若只想快速驗證流程，可先把 DNN 的 `training_epochs` 降低，但結果很容易會不理想
+- 若只想快速驗證流程，可先把 DNN 的 `training_epochs` 降低，但結果可能會不理想(已測試過50 epochs 完全無法和理論結果接近)
 - 若要更接近最終結果，可能要使用 200 epochs 以上
 - 200 epochs用colab無gpu支援下完整模擬全部數據時間約2~2.5小時
 
