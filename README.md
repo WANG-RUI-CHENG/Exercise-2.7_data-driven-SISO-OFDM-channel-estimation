@@ -19,6 +19,12 @@ repo 區分成兩類檔案：
 - `plot_results.py`：畫出最終 MSE 曲線
 - `generate_channel_data.py`：重新生成 `channel_train.npy` / `channel_test.npy`
 
+### C. 模擬結果檔案放置資料夾
+放置在results資料夾中的
+
+- `final_results_200epochs.csv`:數據表格
+- `figure_2_9_reproduced_200ep.png`:模擬結果圖檔
+
 ---
 
 ## 2. 資料夾結構
