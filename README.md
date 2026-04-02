@@ -40,8 +40,6 @@ scipy
 matplotlib
 pandas
 
-使用的是全新的 Colab runtime，通常直接安裝即可
-若遇到 TensorFlow / JAX 套件衝突，建議使用全新 runtime 重新安裝
 
 ### 2.2 建議環境
 - Python 3.10+
