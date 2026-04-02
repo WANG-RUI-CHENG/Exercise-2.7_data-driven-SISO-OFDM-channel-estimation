@@ -34,11 +34,11 @@
 已在 Colab 以 `tensorflow.compat.v1` 模式驗證可跑
 
 安裝：
-tensorflow>=2.16
-numpy
-scipy
-matplotlib
-pandas
+- tensorflow>=2.16
+- numpy
+- scipy
+- matplotlib
+- pandas
 
 
 ### 2.2 建議環境
